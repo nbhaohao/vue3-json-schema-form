@@ -100,7 +100,7 @@ export default defineComponent({
       demo.uiSchemaCode = toJson(d.uiSchema);
     });
 
-    const methodRef: Ref<any> = ref();
+    // const methodRef: Ref<any> = ref();
 
     const classesRef = useStyles();
 
