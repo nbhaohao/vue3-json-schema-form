@@ -1,4 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// 处理 json schema 的工具函数，主要是把带有复杂规则的 schema 处理为普通规则的
+
+/* eslint-disable */
 // @ts-nocheck
 import Ajv from "ajv";
 import { Schema } from "./types";

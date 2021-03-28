@@ -8,6 +8,7 @@ import { FieldPropsDefine } from "../types";
 
 const props = defineProps({ ...FieldPropsDefine });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const handleChange = (e: InputEvent) => {
   const input = (e.target as HTMLInputElement).value;
   const num = Number(input);
