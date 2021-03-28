@@ -4,7 +4,7 @@ import StringField from "./fields/StringField.vue";
 import NumberField from "./fields/NumberField.vue";
 
 export default defineComponent({
-  name: "SchemaItems",
+  name: "SchemaItem",
   props: { ...FieldPropsDefine },
   setup(props) {
     return () => {

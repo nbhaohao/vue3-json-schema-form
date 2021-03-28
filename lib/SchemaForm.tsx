@@ -1,6 +1,6 @@
 import { defineComponent, PropType } from "vue";
 import { Schema, SchemaTypes } from "./types";
-import SchemaItems from "./SchemaItems";
+import SchemaItem from "./SchemaItem";
 
 export default defineComponent({
   props: {
@@ -23,7 +23,7 @@ export default defineComponent({
     };
     return () => {
       return (
-        <SchemaItems
+        <SchemaItem
           schema={props.schema}
           value={props.value}
           onChange={handleChange}
