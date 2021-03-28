@@ -1,9 +1,3 @@
-import { defineComponent } from "vue";
+import SchemaForm from "./SchemaForm";
 
-export default defineComponent({
-  setup(p, { slots }) {
-    return () => {
-      return <div>this is form</div>;
-    };
-  },
-});
+export default SchemaForm;
