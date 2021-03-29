@@ -1,4 +1,4 @@
-import { PropType } from "vue";
+import { DefineComponent, PropType } from "vue";
 
 export enum SchemaTypes {
   "NUMBER" = "number",
@@ -65,3 +65,4 @@ export const FieldPropsDefine = {
     required: true,
   },
 } as const;
+export type CommonFieldType = DefineComponent<typeof FieldPropsDefine>;
