@@ -3,6 +3,8 @@ import { createUseStyles } from "vue-jss";
 import { FieldPropsDefine, Schema } from "../types";
 import useSchemaFormContext from "../hooks/useSchemaFormContext";
 
+import Selection from "../widgets/Selection";
+
 const useStyles = createUseStyles({
   container: {
     border: "1px solid #eee",
@@ -166,8 +168,19 @@ export default defineComponent({
             })}
           </>
         );
+      } else {
+        const enumOptions = (schemaItems as any).enum.map((e: any) => ({
+          key: e,
+          value: e,
+        }));
+        return (
+          <Selection
+            onChange={props.onChange}
+            value={props.value}
+            options={enumOptions}
+          />
+        );
       }
-      return null;
     };
   },
 });

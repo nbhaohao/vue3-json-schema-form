@@ -33,6 +33,13 @@ export default {
           type: "string",
         },
       },
+      multiSelectArray: {
+        type: "array",
+        items: {
+          type: "string",
+          enum: ["123", "456", "789"],
+        },
+      },
     },
   },
   uiSchema: {
@@ -56,5 +63,6 @@ export default {
     bio: "Roundhouse kicking asses since 1940",
     password: "noneed",
     singleTypeArray: ["zzh"],
+    multiSelectArray: [],
   },
 };
