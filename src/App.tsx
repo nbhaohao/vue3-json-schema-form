@@ -134,7 +134,7 @@ export default defineComponent({
         // <VJSFThemeProvider theme={theme as any}>
         <div class={classes.container}>
           <div class={classes.menu}>
-            <h1>Vue3 JsonSchema Form</h1>
+            <h1>基于 JSON 渲染表单</h1>
             <div>
               {demos.map((demo, index) => (
                 <button
