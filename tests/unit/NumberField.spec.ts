@@ -2,7 +2,7 @@ import { mount } from "@vue/test-utils";
 import SchemaForm from "../../lib/SchemaForm";
 import { NumberField } from "../../lib";
 
-describe("SchemaForm", () => {
+describe("NumberField", () => {
   it("should render correct number field", async () => {
     let value = "";
     const wrapper = mount(SchemaForm, {
