@@ -22,5 +22,7 @@ describe("SchemaForm", () => {
     input.element.value = "123";
     await input.trigger("input");
     expect(value).toBe(123);
+    numberField.vm.handleChange({ target: { value: undefined } });
+    expect(value).toBe(undefined);
   });
 });
