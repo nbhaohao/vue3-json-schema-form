@@ -9,6 +9,8 @@ export default defineComponent({
   setup(props) {
     const handleChange = (e: Event) => {
       const input = (e.target as HTMLInputElement).value;
+      // hack 在 Vue 中实现受控组件
+      (e.target as HTMLInputElement).value = props.value as any;
       props.onChange(input);
     };
     return () => {
