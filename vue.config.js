@@ -1,10 +1,12 @@
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const CircularDependencyPlugin = require("circular-dependency-plugin");
 
+const IS_LIB = process.env.TYPE === "lib";
+
 module.exports = {
   configureWebpack: {
     plugins: [
-      new MonacoWebpackPlugin(),
+      IS_LIB ? null : new MonacoWebpackPlugin(),
       new CircularDependencyPlugin({
         // exclude detection of files based on a RegExp
         exclude: /node_modules/,
@@ -18,6 +20,6 @@ module.exports = {
         // set the current working directory for displaying module paths
         cwd: process.cwd(),
       }),
-    ],
+    ].filter(Boolean),
   },
 };
