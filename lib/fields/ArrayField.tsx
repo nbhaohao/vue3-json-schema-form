@@ -2,6 +2,7 @@ import { defineComponent, PropType } from "vue";
 import { createUseStyles } from "vue-jss";
 import { FieldPropsDefine, Schema } from "../types";
 import useSchemaFormContext from "../hooks/useSchemaFormContext";
+import { useGetWidget } from "../theme";
 
 const useStyles = createUseStyles({
   container: {
@@ -120,12 +121,13 @@ export default defineComponent({
       value.splice(index + 1, 0, moveItem);
       props.onChange(value);
     };
+    const SelectionRef = useGetWidget("SelectionWidget");
     return () => {
       const { schema, value, rootSchema } = props;
-      const Selection = context.theme.widgets.SelectionWidget;
       const schemaItems = schema.items;
       const isMultiType = Array.isArray(schemaItems);
       const isSelect = schemaItems && (schemaItems as any).enum;
+      const Selection = SelectionRef.value;
       if (isMultiType) {
         const arr = Array.isArray(value) ? value : [];
         return (
