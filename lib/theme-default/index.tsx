@@ -13,7 +13,7 @@ const CommonWidget = defineComponent({
   },
 });
 
-const themeDefault: Theme = {
+const defaultTheme: Theme = {
   widgets: {
     SelectionWidget: Selection,
     TextWidget: CommonWidget,
@@ -21,4 +21,4 @@ const themeDefault: Theme = {
   },
 };
 
-export default themeDefault;
+export default defaultTheme;

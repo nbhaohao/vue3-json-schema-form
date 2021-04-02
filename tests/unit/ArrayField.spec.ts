@@ -1,10 +1,10 @@
 import { mount } from "@vue/test-utils";
-import SchemaForm from "../../lib/SchemaForm";
 import { ArrayField, NumberField, StringField, Selection } from "../../lib";
+import TestComponent from "./utils/TestComponent";
 
 describe("ArrayField", () => {
   it("should render multi type", () => {
-    const wrapper = mount(SchemaForm, {
+    const wrapper = mount(TestComponent, {
       props: {
         schema: {
           type: "array",
@@ -31,7 +31,7 @@ describe("ArrayField", () => {
     expect(numberField.exists()).toBeTruthy();
   });
   it("should render single type", () => {
-    const wrapper = mount(SchemaForm, {
+    const wrapper = mount(TestComponent, {
       props: {
         schema: {
           type: "array",
@@ -53,7 +53,7 @@ describe("ArrayField", () => {
     expect(stringFields[1].props("value")).toBe("2");
   });
   it("should render multiSelect type", () => {
-    const wrapper = mount(SchemaForm, {
+    const wrapper = mount(TestComponent, {
       props: {
         schema: {
           type: "array",
