@@ -6,7 +6,7 @@ import {
   provide,
   ComputedRef,
 } from "vue";
-import { Theme } from "./types";
+import { CommonWidgetNames, SelectionWidgetNames, Theme } from "./types";
 
 const THEME_PROVIDER_KEY = Symbol("themeProviderKey");
 
@@ -25,7 +25,7 @@ const ThemeProvider = defineComponent({
   },
 });
 
-export function useGetWidget(name: keyof Theme["widgets"]) {
+export function useGetWidget(name: SelectionWidgetNames | CommonWidgetNames) {
   const context: ComputedRef<Theme> | undefined = inject(THEME_PROVIDER_KEY);
   if (!context) {
     throw new Error("schemaForm theme required");

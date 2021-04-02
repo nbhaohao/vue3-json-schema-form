@@ -92,10 +92,19 @@ export type SelectionWidgetType = DefineComponent<
   any
 >;
 
+export enum SelectionWidgetNames {
+  SelectionWidget = "SelectionWidget",
+}
+
+export enum CommonWidgetNames {
+  TextWidget = "TextWidget",
+  NumberWidget = "NumberWidget",
+}
+
 export interface Theme {
   widgets: {
-    SelectionWidget: SelectionWidgetType;
-    TextWidget: CommonWidgetDefine;
-    NumberWidget: CommonWidgetDefine;
+    [SelectionWidgetNames.SelectionWidget]: SelectionWidgetType;
+    [CommonWidgetNames.TextWidget]: CommonWidgetDefine;
+    [CommonWidgetNames.NumberWidget]: CommonWidgetDefine;
   };
 }
