@@ -1,5 +1,6 @@
 import { CommonWidgetPropsDefine, Theme } from "../types";
-import Selection from "./Selection";
+import SelectionWidget from "./SelectionWidget";
+import TextWidget from "./TextWidget";
 import { defineComponent } from "vue";
 
 const CommonWidget = defineComponent({
@@ -15,8 +16,8 @@ const CommonWidget = defineComponent({
 
 const defaultTheme: Theme = {
   widgets: {
-    SelectionWidget: Selection,
-    TextWidget: CommonWidget,
+    SelectionWidget,
+    TextWidget,
     NumberWidget: CommonWidget,
   },
 };

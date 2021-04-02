@@ -25,13 +25,15 @@ const ThemeProvider = defineComponent({
   },
 });
 
-export function useGetWidget(name: SelectionWidgetNames | CommonWidgetNames) {
+export function useGetWidget<
+  T extends SelectionWidgetNames | CommonWidgetNames
+>(name: T) {
   const context: ComputedRef<Theme> | undefined = inject(THEME_PROVIDER_KEY);
   if (!context) {
     throw new Error("schemaForm theme required");
   }
 
-  const widgetRef = computed(() => {
+  const widgetRef: ComputedRef<Theme["widgets"][T]> = computed(() => {
     return context.value.widgets[name];
   });
 

@@ -1,5 +1,6 @@
 import { defineComponent } from "vue";
-import { FieldPropsDefine } from "../types";
+import { CommonWidgetNames, FieldPropsDefine } from "../types";
+import { useGetWidget } from "../theme";
 
 export default defineComponent({
   name: "StringField",
@@ -7,14 +8,14 @@ export default defineComponent({
     ...FieldPropsDefine,
   },
   setup(props) {
-    const handleChange = (e: Event) => {
-      const input = (e.target as HTMLInputElement).value;
-      props.onChange(input);
+    const TextWidgetRef = useGetWidget(CommonWidgetNames.TextWidget);
+    const handleChange = (value: string) => {
+      props.onChange(value);
     };
     return () => {
-      return (
-        <input type="text" value={props.value as any} onInput={handleChange} />
-      );
+      const { schema, rootSchema, ...rest } = props;
+      const TextWidget = TextWidgetRef.value;
+      return <TextWidget {...rest} onChange={handleChange} />;
     };
   },
 });
