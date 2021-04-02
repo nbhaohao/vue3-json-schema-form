@@ -22,7 +22,11 @@ describe("NumberField", () => {
     input.element.value = "123";
     await input.trigger("input");
     expect(value).toBe(123);
-    numberField.vm.handleChange({ target: { value: undefined } });
-    expect(value).toBe(undefined);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    await input.setValue("a");
+    await input.trigger("input");
+    // numberField.vm.handleChange({ target: { value: undefined } });
+    expect(value).toBe(0);
   });
 });
