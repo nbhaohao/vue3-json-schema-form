@@ -1,10 +1,12 @@
-import { defineComponent } from "vue";
+import { CommonWidgetDefine, Theme } from "../types";
+import Selection from "./Selection";
 
-export default defineComponent({
-  name: "ThemeDefault",
-  setup() {
-    return () => {
-      return <div>hello world</div>;
-    };
+const themeDefault: Theme = {
+  widgets: {
+    SelectionWidget: Selection,
+    TextWidget: Selection as CommonWidgetDefine,
+    NumberWidget: Selection as CommonWidgetDefine,
   },
-});
+};
+
+export default themeDefault;

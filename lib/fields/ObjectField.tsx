@@ -26,7 +26,7 @@ export default defineComponent({
         <SchemaItem
           key={`${key}-${index}`}
           value={currentValue[key]}
-          onChange={(v) => handleObjectFieldChange(key, v)}
+          onChange={(v: any) => handleObjectFieldChange(key, v)}
           schema={properties[key]}
           rootSchema={props.rootSchema}
         />

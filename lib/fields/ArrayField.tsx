@@ -3,8 +3,6 @@ import { createUseStyles } from "vue-jss";
 import { FieldPropsDefine, Schema } from "../types";
 import useSchemaFormContext from "../hooks/useSchemaFormContext";
 
-import Selection from "../widgets/Selection";
-
 const useStyles = createUseStyles({
   container: {
     border: "1px solid #eee",
@@ -124,6 +122,7 @@ export default defineComponent({
     };
     return () => {
       const { schema, value, rootSchema } = props;
+      const Selection = context.theme.widgets.SelectionWidget;
       const schemaItems = schema.items;
       const isMultiType = Array.isArray(schemaItems);
       const isSelect = schemaItems && (schemaItems as any).enum;
@@ -138,7 +137,7 @@ export default defineComponent({
                   key={index}
                   rootSchema={rootSchema}
                   value={arr[index]}
-                  onChange={(v) => handleArrayItemChange(v, index)}
+                  onChange={(v: any) => handleArrayItemChange(v, index)}
                 />
               );
             })}
@@ -161,7 +160,7 @@ export default defineComponent({
                     schema={schemaItems as Schema}
                     value={v}
                     rootSchema={rootSchema}
-                    onChange={(v) => handleArrayItemChange(v, index)}
+                    onChange={(v: any) => handleArrayItemChange(v, index)}
                   />
                 </ArrayItemWrapper>
               );
