@@ -3,30 +3,32 @@ export default {
   schema: {
     description: "A simple form example.",
     type: "object",
-    required: ["firstName", "lastName"],
     properties: {
       firstName: {
         title: "firstName",
         type: "string",
         default: "Chuck",
+        minLength: 6,
       },
       lastName: {
         title: "lastName",
         type: "string",
+        maxLength: 3,
       },
       telephone: {
         title: "telephone",
         type: "string",
-        minLength: 10,
       },
       staticArray: {
         title: "staticArray",
         type: "array",
         items: [
           {
+            title: "item1",
             type: "string",
           },
           {
+            title: "item2",
             type: "number",
           },
         ],
@@ -36,14 +38,6 @@ export default {
         type: "array",
         items: {
           type: "string",
-        },
-      },
-      multiSelectArray: {
-        title: "multiSelectArray",
-        type: "array",
-        items: {
-          type: "string",
-          enum: ["123", "456", "789"],
         },
       },
     },

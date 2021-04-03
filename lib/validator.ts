@@ -27,7 +27,9 @@ function toErrorSchema(errors: TransformedErrorObject[]) {
   }
   return errors.reduce((errorSchema, error) => {
     const { property, message } = error;
-    const path = toPath(property);
+    const path = toPath(
+      property && property.startsWith("/") ? property.slice(1) : property,
+    );
     let parent = errorSchema;
     if (path.length > 0 && path[0] === "") {
       path.splice(0, 1);
