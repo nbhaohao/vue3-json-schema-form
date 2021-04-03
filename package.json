@@ -1,7 +1,7 @@
 {
-  "name": "vue3-json-schema-form",
+  "name": "schema-json-form-zzh",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build:core": "TYPE=lib vue-cli-service build --target lib --name index --no-clean lib/index.tsx",
@@ -9,7 +9,8 @@
     "build": "rimraf dist && npm run build:core && npm run build:theme",
     "test:unit": "vue-cli-service test:unit",
     "test:cov": "npm run test:unit -- --coverage",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "ajv": "^8.0.1",
@@ -59,5 +60,12 @@
       "vue-cli-service lint",
       "git add"
     ]
-  }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.common.js"
 }
