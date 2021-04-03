@@ -1,11 +1,11 @@
 import { mount } from "@vue/test-utils";
-import SchemaForm from "../../lib/SchemaForm";
 import { NumberField } from "../../lib";
+import TestComponent from "./utils/TestComponent";
 
 describe("NumberField", () => {
   it("should render correct number field", async () => {
     let value = "";
-    const wrapper = mount(SchemaForm, {
+    const wrapper = mount(TestComponent, {
       props: {
         schema: {
           type: "number",

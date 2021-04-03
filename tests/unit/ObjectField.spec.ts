@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
-import SchemaForm from "../../lib/SchemaForm";
 import { NumberField, StringField } from "../../lib";
+import TestComponent from "./utils/TestComponent";
 
 describe("ObjectField", () => {
   let schema = {};
@@ -19,7 +19,7 @@ describe("ObjectField", () => {
   });
   it("should render properties to current fields", async () => {
     let value = "";
-    const wrapper = mount(SchemaForm, {
+    const wrapper = mount(TestComponent, {
       props: {
         schema,
         value: {},
@@ -35,7 +35,7 @@ describe("ObjectField", () => {
   });
   it("should change value when sub fields trigger onChange", async () => {
     let value: any = {};
-    const wrapper = mount(SchemaForm, {
+    const wrapper = mount(TestComponent, {
       props: {
         schema,
         value,
