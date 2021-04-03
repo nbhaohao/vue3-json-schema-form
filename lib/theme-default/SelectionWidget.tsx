@@ -1,5 +1,5 @@
 import { defineComponent, PropType, ref, watch } from "vue";
-import { CommonWidgetPropsDefine } from "../types";
+import { CommonWidgetPropsDefine, SelectionWidgetType } from "../types";
 
 export const SelectionWidgetPropsDefine = {
   options: {
@@ -40,4 +40,4 @@ export default defineComponent({
       );
     };
   },
-});
+}) as SelectionWidgetType;

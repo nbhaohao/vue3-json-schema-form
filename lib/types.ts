@@ -75,21 +75,11 @@ export const CommonWidgetPropsDefine = {
   },
 } as const;
 
-export type CommonFieldType = DefineComponent<
-  typeof FieldPropsDefine,
-  any,
-  any
->;
-export type CommonWidgetDefine = DefineComponent<
-  typeof CommonWidgetPropsDefine,
-  any,
-  any
->;
+export type CommonFieldType = DefineComponent<typeof FieldPropsDefine>;
+export type CommonWidgetType = DefineComponent<typeof CommonWidgetPropsDefine>;
 
 export type SelectionWidgetType = DefineComponent<
-  typeof SelectionWidgetPropsDefine & typeof CommonWidgetPropsDefine,
-  any,
-  any
+  typeof SelectionWidgetPropsDefine & typeof CommonWidgetPropsDefine
 >;
 
 export enum SelectionWidgetNames {
@@ -104,7 +94,7 @@ export enum CommonWidgetNames {
 export interface Theme {
   widgets: {
     [SelectionWidgetNames.SelectionWidget]: SelectionWidgetType;
-    [CommonWidgetNames.TextWidget]: CommonWidgetDefine;
-    [CommonWidgetNames.NumberWidget]: CommonWidgetDefine;
+    [CommonWidgetNames.TextWidget]: CommonWidgetType;
+    [CommonWidgetNames.NumberWidget]: CommonWidgetType;
   };
 }

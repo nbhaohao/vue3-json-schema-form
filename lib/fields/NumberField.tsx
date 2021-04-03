@@ -1,5 +1,6 @@
 import { defineComponent } from "vue";
-import { FieldPropsDefine } from "../types";
+import { CommonWidgetNames, FieldPropsDefine } from "../types";
+import { useGetWidget } from "../theme";
 
 export default defineComponent({
   name: "NumberField",
@@ -7,23 +8,19 @@ export default defineComponent({
     ...FieldPropsDefine,
   },
   setup(props) {
-    const handleChange = (e: Event) => {
-      const input = (e.target as HTMLInputElement).value;
-      const num = Number(input);
+    const handleChange = (value: string) => {
+      const num = Number(value);
       if (Number.isNaN(num)) {
         props.onChange(undefined);
         return;
       }
       props.onChange(num);
     };
+    const NumberWidgetRef = useGetWidget(CommonWidgetNames.NumberWidget);
     return () => {
-      return (
-        <input
-          type="number"
-          value={props.value as any}
-          onInput={handleChange}
-        />
-      );
+      const { schema, rootSchema, ...rest } = props;
+      const NumberWidget = NumberWidgetRef.value;
+      return <NumberWidget {...rest} onChange={handleChange} />;
     };
   },
 });
