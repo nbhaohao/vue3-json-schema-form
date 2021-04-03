@@ -81,6 +81,10 @@ export const CommonWidgetPropsDefine = {
   errors: {
     type: Array as PropType<Array<string>>,
   },
+  schema: {
+    type: Object as PropType<Schema>,
+    required: true,
+  },
 } as const;
 
 export type CommonFieldType = DefineComponent<typeof FieldPropsDefine>;

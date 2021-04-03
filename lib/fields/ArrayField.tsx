@@ -178,6 +178,7 @@ export default defineComponent({
         }));
         return (
           <Selection
+            schema={props.schema}
             errors={props.errorSchema.__errors}
             onChange={props.onChange}
             value={props.value}

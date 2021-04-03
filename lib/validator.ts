@@ -58,7 +58,6 @@ function transformErrors(
   }
   return errors.map(
     ({ message, instancePath, keyword, params, schemaPath }) => {
-      console.log("instancePath", instancePath);
       return {
         name: keyword,
         property: `${instancePath}`,
