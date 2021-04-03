@@ -1,7 +1,14 @@
-import { defineComponent, PropType, provide } from "vue";
+import { defineComponent, PropType, provide, Ref, watch } from "vue";
 import { Schema } from "./types";
 import SchemaItem from "./SchemaItem";
 import { SchemaFormContextKey } from "./context";
+
+interface ContextRef {
+  doValidate: () => {
+    errors: any[];
+    valid: boolean;
+  };
+}
 
 export default defineComponent({
   props: {
@@ -16,6 +23,9 @@ export default defineComponent({
       type: Function as PropType<(v: any) => void>,
       required: true,
     },
+    contextRef: {
+      type: Object as PropType<Ref<ContextRef | undefined>>,
+    },
   },
   name: "SchemaForm",
   setup(props) {
@@ -26,7 +36,26 @@ export default defineComponent({
       SchemaItem,
     };
     provide(SchemaFormContextKey, context);
-
+    watch(
+      () => props.contextRef,
+      () => {
+        if (props.contextRef) {
+          // eslint-disable-next-line vue/no-mutating-props
+          props.contextRef.value = {
+            doValidate() {
+              console.log("doValidate");
+              return {
+                valid: true,
+                errors: [],
+              };
+            },
+          };
+        }
+      },
+      {
+        immediate: true,
+      },
+    );
     return () => {
       return (
         <SchemaItem
