@@ -1,7 +1,16 @@
-import { defineComponent, PropType, provide, Ref, watch } from "vue";
+import {
+  defineComponent,
+  PropType,
+  provide,
+  Ref,
+  shallowRef,
+  watch,
+  watchEffect,
+} from "vue";
 import { Schema } from "./types";
 import SchemaItem from "./SchemaItem";
 import { SchemaFormContextKey } from "./context";
+import Ajv, { Options } from "ajv";
 
 interface ContextRef {
   doValidate: () => {
@@ -9,6 +18,10 @@ interface ContextRef {
     valid: boolean;
   };
 }
+
+const DEFAULT_AJV_OPTIONS: Options = {
+  allErrors: true,
+};
 
 export default defineComponent({
   props: {
@@ -26,6 +39,9 @@ export default defineComponent({
     contextRef: {
       type: Object as PropType<Ref<ContextRef | undefined>>,
     },
+    ajvOptions: {
+      type: Object as PropType<Options>,
+    },
   },
   name: "SchemaForm",
   setup(props) {
@@ -35,6 +51,16 @@ export default defineComponent({
     const context = {
       SchemaItem,
     };
+
+    const validatorRef: Ref<Ajv> = shallowRef() as Ref<Ajv>;
+
+    watchEffect(() => {
+      validatorRef.value = new Ajv({
+        ...DEFAULT_AJV_OPTIONS,
+        ...props.ajvOptions,
+      });
+    });
+
     provide(SchemaFormContextKey, context);
     watch(
       () => props.contextRef,
@@ -44,9 +70,13 @@ export default defineComponent({
           props.contextRef.value = {
             doValidate() {
               console.log("doValidate");
+              const valid = validatorRef.value.validate(
+                props.schema,
+                props.value,
+              );
               return {
-                valid: true,
-                errors: [],
+                valid,
+                errors: validatorRef.value.errors || [],
               };
             },
           };
