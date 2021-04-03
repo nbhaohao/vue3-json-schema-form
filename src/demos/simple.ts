@@ -1,5 +1,5 @@
 export default {
-  name: "Simple",
+  name: "渲染 array, object 的 json 数据",
   schema: {
     description: "A simple form example.",
     type: "object",
@@ -39,20 +39,6 @@ export default {
         items: {
           type: "string",
         },
-      },
-    },
-  },
-  uiSchema: {
-    title: "A registration form",
-    properties: {
-      firstName: {
-        title: "First name",
-      },
-      lastName: {
-        title: "Last name",
-      },
-      telephone: {
-        title: "Telephone",
       },
     },
   },

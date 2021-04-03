@@ -1,10 +1,9 @@
 export default {
-  name: "Demo",
+  name: "普通使用",
   schema: {
     type: "string",
     minLength: 10,
     title: "demo",
   },
-  uiSchema: {},
   default: "1",
 };

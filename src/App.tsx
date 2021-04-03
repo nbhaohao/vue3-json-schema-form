@@ -95,10 +95,8 @@ export default defineComponent({
       const d = demos[index];
       demo.schema = d.schema;
       demo.data = d.default;
-      demo.uiSchema = d.uiSchema;
       demo.schemaCode = toJson(d.schema);
       demo.dataCode = toJson(d.default);
-      demo.uiSchemaCode = toJson(d.uiSchema);
     });
 
     // const methodRef: Ref<any> = ref();
@@ -158,13 +156,7 @@ export default defineComponent({
                 onChange={handleSchemaChange}
                 title="Schema"
               />
-              <div class={classes.uiAndValue}>
-                <MonacoEditor
-                  code={demo.uiSchemaCode}
-                  class={classes.codePanel}
-                  onChange={handleUISchemaChange}
-                  title="UISchema"
-                />
+              <div class={classes.code}>
                 <MonacoEditor
                   code={demo.dataCode}
                   class={classes.codePanel}
