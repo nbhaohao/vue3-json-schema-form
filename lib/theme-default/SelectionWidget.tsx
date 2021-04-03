@@ -1,5 +1,6 @@
 import { defineComponent, PropType, ref, watch } from "vue";
 import { CommonWidgetPropsDefine, SelectionWidgetType } from "../types";
+import { withFormItem } from "./FormItem";
 
 export const SelectionWidgetPropsDefine = {
   options: {
@@ -8,36 +9,38 @@ export const SelectionWidgetPropsDefine = {
   },
 } as const;
 
-export default defineComponent({
-  name: "SelectionWidget",
-  props: {
-    ...CommonWidgetPropsDefine,
-    ...SelectionWidgetPropsDefine,
-  },
-  setup(props) {
-    const currentValueRef = ref(props.value);
-    watch(currentValueRef, (newValue, oldValue) => {
-      if (newValue !== oldValue) {
-        props.onChange(newValue);
-      }
-    });
-    watch(
-      () => props.value,
-      (value) => {
-        if (value !== currentValueRef.value) {
-          currentValueRef.value = value;
+export default withFormItem(
+  defineComponent({
+    name: "SelectionWidget",
+    props: {
+      ...CommonWidgetPropsDefine,
+      ...SelectionWidgetPropsDefine,
+    },
+    setup(props) {
+      const currentValueRef = ref(props.value);
+      watch(currentValueRef, (newValue, oldValue) => {
+        if (newValue !== oldValue) {
+          props.onChange(newValue);
         }
-      },
-    );
-    return () => {
-      const { options } = props;
-      return (
-        <select multiple v-model={currentValueRef.value}>
-          {options.map((option) => (
-            <option value={option.value}>{option.key}</option>
-          ))}
-        </select>
+      });
+      watch(
+        () => props.value,
+        (value) => {
+          if (value !== currentValueRef.value) {
+            currentValueRef.value = value;
+          }
+        },
       );
-    };
-  },
-}) as SelectionWidgetType;
+      return () => {
+        const { options } = props;
+        return (
+          <select multiple v-model={currentValueRef.value}>
+            {options.map((option) => (
+              <option value={option.value}>{option.key}</option>
+            ))}
+          </select>
+        );
+      };
+    },
+  }),
+) as SelectionWidgetType;

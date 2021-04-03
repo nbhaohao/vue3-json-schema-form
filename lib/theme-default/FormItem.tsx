@@ -16,8 +16,7 @@ const useStyles = createUseStyles({
     paddingLeft: 20,
   },
 });
-
-export default defineComponent({
+const FomItem = defineComponent({
   name: "FormItem",
   props: {
     ...CommonWidgetPropsDefine,
@@ -41,3 +40,21 @@ export default defineComponent({
     };
   },
 });
+
+export default FomItem;
+
+export function withFormItem(Widget: any) {
+  return defineComponent({
+    name: `Wrapped${Widget.name}`,
+    props: { ...CommonWidgetPropsDefine },
+    setup(props, { attrs }) {
+      return () => {
+        return (
+          <FomItem {...props}>
+            <Widget {...props} {...attrs} />
+          </FomItem>
+        );
+      };
+    },
+  }) as any;
+}
