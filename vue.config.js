@@ -4,6 +4,7 @@ const CircularDependencyPlugin = require("circular-dependency-plugin");
 const IS_LIB = process.env.TYPE === "lib";
 
 module.exports = {
+  productionSourceMap: process.env.NODE_ENV !== "production",
   configureWebpack: {
     plugins: [
       IS_LIB ? null : new MonacoWebpackPlugin(),
@@ -22,4 +23,5 @@ module.exports = {
       }),
     ].filter(Boolean),
   },
+  publicPath: process.env.NODE_ENV === "production" ? "/schema-json-form/" : "/",
 };
