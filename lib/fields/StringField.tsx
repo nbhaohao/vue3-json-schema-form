@@ -13,9 +13,15 @@ export default defineComponent({
       props.onChange(value);
     };
     return () => {
-      const { schema, rootSchema, ...rest } = props;
+      const { schema, rootSchema, errorSchema, ...rest } = props;
       const TextWidget = TextWidgetRef.value;
-      return <TextWidget {...rest} onChange={handleChange} />;
+      return (
+        <TextWidget
+          {...rest}
+          errors={errorSchema.__errors}
+          onChange={handleChange}
+        />
+      );
     };
   },
 });

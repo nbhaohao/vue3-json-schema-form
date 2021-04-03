@@ -11,6 +11,7 @@ import { Schema } from "./types";
 import SchemaItem from "./SchemaItem";
 import { SchemaFormContextKey } from "./context";
 import Ajv, { Options } from "ajv";
+import { ErrorSchema, validateFormData } from "./validator";
 
 interface ContextRef {
   doValidate: () => {
@@ -42,6 +43,10 @@ export default defineComponent({
     ajvOptions: {
       type: Object as PropType<Options>,
     },
+    locale: {
+      type: String,
+      default: "zh",
+    },
   },
   name: "SchemaForm",
   setup(props) {
@@ -53,6 +58,8 @@ export default defineComponent({
     };
 
     const validatorRef: Ref<Ajv> = shallowRef() as Ref<Ajv>;
+
+    const errorSchemaRef: Ref<ErrorSchema> = shallowRef({});
 
     watchEffect(() => {
       validatorRef.value = new Ajv({
@@ -69,15 +76,14 @@ export default defineComponent({
           // eslint-disable-next-line vue/no-mutating-props
           props.contextRef.value = {
             doValidate() {
-              console.log("doValidate");
-              const valid = validatorRef.value.validate(
-                props.schema,
+              const result = validateFormData(
+                validatorRef.value,
                 props.value,
+                props.schema,
+                props.locale,
               );
-              return {
-                valid,
-                errors: validatorRef.value.errors || [],
-              };
+              errorSchemaRef.value = result.errorSchema;
+              return result;
             },
           };
         }
@@ -89,6 +95,7 @@ export default defineComponent({
     return () => {
       return (
         <SchemaItem
+          errorSchema={errorSchemaRef.value || {}}
           schema={props.schema}
           rootSchema={props.schema}
           value={props.value}

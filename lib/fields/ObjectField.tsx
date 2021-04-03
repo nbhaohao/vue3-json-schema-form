@@ -24,6 +24,7 @@ export default defineComponent({
 
       return Object.keys(properties).map((key: string, index: number) => (
         <SchemaItem
+          errorSchema={props.errorSchema[key] || {}}
           key={`${key}-${index}`}
           value={currentValue[key]}
           onChange={(v: any) => handleObjectFieldChange(key, v)}

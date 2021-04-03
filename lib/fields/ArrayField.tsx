@@ -135,6 +135,7 @@ export default defineComponent({
             {(schemaItems as Schema[]).map((s: Schema, index: number) => {
               return (
                 <SchemaItem
+                  errorSchema={props.errorSchema[index] || {}}
                   schema={s}
                   key={index}
                   rootSchema={rootSchema}
@@ -159,6 +160,7 @@ export default defineComponent({
                   onDown={handleDown}
                 >
                   <SchemaItem
+                    errorSchema={props.errorSchema[index] || {}}
                     schema={schemaItems as Schema}
                     value={v}
                     rootSchema={rootSchema}
@@ -176,6 +178,7 @@ export default defineComponent({
         }));
         return (
           <Selection
+            errors={props.errorSchema.__errors}
             onChange={props.onChange}
             value={props.value}
             options={enumOptions}
