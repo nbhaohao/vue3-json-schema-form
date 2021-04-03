@@ -1,29 +1,4 @@
-# vue3-json-schema-form
+# SchemaForm
+![Coverage](https://img.shields.io/codecov/c/github/nbhaohao/vue3-json-schema-form/main)
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+基于 JSON 数据快速生成表单项，JSON 结构基于 `JSON Schema`，封装 [ajv](https://github.com/ajv-validator/ajv) 实现校验功能。
